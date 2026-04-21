@@ -20,9 +20,10 @@
             font-family: 'Impact', 'Arial Black', sans-serif;
             margin: 0; padding: 0;
             display: flex;
+            flex-direction: row; /* Layout para compu */
         }
 
-        /* NAVEGACIÓN IZQUIERDA */
+        /* NAVEGACIÓN IZQUIERDA (Escritorio) */
         nav {
             background-color: var(--verde);
             width: 90px;
@@ -47,6 +48,7 @@
             text-align: center;
             transition: 0.3s;
             letter-spacing: 1px;
+            padding: 10px 5px;
         }
 
         nav a:hover { color: var(--naranja); transform: scale(1.2); text-shadow: 0 0 10px var(--naranja); }
@@ -55,6 +57,7 @@
             width: calc(100% - 90px);
             margin-left: 90px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
         }
 
         header {
@@ -116,6 +119,7 @@
         .news-tag { background: var(--naranja); color: var(--negro); font-weight: bold; font-size: 0.7em; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; }
 
         /* TABLAS Y GRIDS */
+        .table-container { width: 100%; overflow-x: auto; } /* Para que las tablas no se corten en celu */
         table { width: 100%; border-collapse: collapse; background: var(--gris); border-radius: 10px; overflow: hidden; }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
         th { background: var(--verde); color: var(--naranja); text-transform: uppercase; letter-spacing: 1px; }
@@ -137,10 +141,43 @@
         .pos-badge { color: var(--naranja); font-weight: bold; font-size: 0.8em; text-transform: uppercase; }
         .player-name { font-family: 'Impact', sans-serif; font-size: 1.4em; margin-top: 10px; letter-spacing: 1px; }
 
-        @media (max-width: 600px) {
-            nav { width: 100%; height: auto; position: relative; flex-direction: row; border-right: none; border-bottom: 3px solid var(--naranja); padding: 10px 0; }
-            .main-wrapper { width: 100%; margin-left: 0; }
+        /* --- AJUSTES RESPONSIVE (CELULAR) --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+
+            nav {
+                width: 100%;
+                height: 60px;
+                position: sticky;
+                top: 0;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 3px solid var(--naranja);
+                padding: 0;
+            }
+
+            nav a { font-size: 0.6em; padding: 5px; flex: 1; letter-spacing: 0; }
+
+            .main-wrapper {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            header { padding: 30px 10px; }
+            h1 { font-size: 2.2em; }
+            .logo-img { max-width: 120px; }
+
+            .container { padding: 20px 15px; }
+            h2 { font-size: 1.8em; }
+
             .dirigencia-card { grid-template-columns: 1fr; }
+
+            .plantel-grid {
+                grid-template-columns: 1fr 1fr; /* Dos pibes por fila en celu */
+                gap: 10px;
+            }
+            .card { padding: 15px 5px; }
+            .player-name { font-size: 1.1em; }
         }
     </style>
 </head>
@@ -227,36 +264,40 @@
 
         <section id="partidos">
             <h2>Calendario</h2>
-            <table>
-                <thead><tr><th>Fecha</th><th>Rival</th><th>Resultado</th><th>Cancha</th></tr></thead>
-                <tbody><tr><td>Próximamente</td><td>Rival a confirmar</td><td>0 - 0</td><td>Mocona</td></tr></tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Fecha</th><th>Rival</th><th>Resultado</th><th>Cancha</th></tr></thead>
+                    <tbody><tr><td>Próximamente</td><td>Rival a confirmar</td><td>0 - 0</td><td>Mocona</td></tr></tbody>
+                </table>
+            </div>
         </section>
 
         <section id="estadisticas">
             <h2>Goleadores y Más</h2>
-            <table>
-                <thead><tr><th>Jugador</th><th>Goles</th><th>Asist.</th><th>PJ</th></tr></thead>
-                <tbody>
-                    <tr><td>Gaspar “La Pulga”</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Brunito</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>La CHANCHA</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Fede</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Gori Marin</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Tobias "Vigevani"</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Bautista "Bautrix" Albarracín</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Alessio "El Carnicero"</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Nahuel Riveros</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Juan "Choto" Cruz</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Elias "MILITAO" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Lucas Farias</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Facu Gutierrez</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>TITAN</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Cristian "KICHAN" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>Alejo "TITI" Ambrosio</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>León "TERIAN" Bottaz</td><td>0</td><td>0</td><td>0</td></tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Jugador</th><th>Goles</th><th>Asist.</th><th>PJ</th></tr></thead>
+                    <tbody>
+                        <tr><td>Gaspar “La Pulga”</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Brunito</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>La CHANCHA</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Fede</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Gori Marin</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Tobias "Vigevani"</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Bautista "Bautrix" Albarracín</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Alessio "El Carnicero"</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Nahuel Riveros</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Juan "Choto" Cruz</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Elias "MILITAO" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Lucas Farias</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Facu Gutierrez</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>TITAN</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Cristian "KICHAN" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>Alejo "TITI" Ambrosio</td><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>León "TERIAN" Bottaz</td><td>0</td><td>0</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </div>
@@ -267,6 +308,7 @@
         document.querySelectorAll('section').forEach(s => s.style.display = 'none');
         const target = document.querySelector(hash);
         if(target) target.style.display = 'block';
+        window.scrollTo(0,0);
     }
     window.addEventListener('hashchange', showSection);
     window.addEventListener('load', showSection);
