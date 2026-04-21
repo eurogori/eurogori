@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUROGORI - Sitio Oficial</title>
+    <style>
+        :root {
+            --naranja: #FF6600;
+            --verde: #1B3F2D;
+            --negro: #000000;
+            --gris: #111111;
+            --blanco: #ffffff;
+            --naranja-brillante: #ff8533;
+        }
+
+        body {
+            background-color: var(--negro);
+            color: var(--blanco);
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            margin: 0; padding: 0;
+            display: flex;
+        }
+
+        /* NAVEGACIÓN IZQUIERDA */
+        nav {
+            background-color: var(--verde);
+            width: 90px;
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border-right: 3px solid var(--naranja);
+            z-index: 1000;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            text-align: center;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--naranja); transform: scale(1.2); text-shadow: 0 0 10px var(--naranja); }
+
+        .main-wrapper {
+            width: calc(100% - 90px);
+            margin-left: 90px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--verde) 0%, var(--negro) 100%);
+            border-bottom: 1px solid var(--verde);
+        }
+
+        .logo-img {
+            max-width: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--naranja);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        h1 { font-family: 'Impact', sans-serif; font-size: 3.5em; margin: 0; color: var(--naranja); letter-spacing: 3px; text-shadow: 2px 2px var(--verde); }
+
+        .container { padding: 40px 20px; max-width: 1000px; margin: auto; padding-bottom: 100px; }
+
+        section { display: none; animation: slideIn 0.5s ease-out; }
+        section:target { display: block; }
+        #inicio { display: block; }
+
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        h2 { font-family: 'Impact', sans-serif; color: var(--naranja); font-size: 2.2em; text-transform: uppercase; border-bottom: 2px solid var(--verde); display: inline-block; margin-bottom: 30px; }
+
+        /* INICIO CUSTOM */
+        .hero-box {
+            background: linear-gradient(45deg, var(--gris), #1a1a1a);
+            border: 2px solid var(--verde);
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-box::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,102,0,0.05) 0%, transparent 70%); }
+
+        .dirigencia-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .dir-item { background: var(--negro); padding: 15px; border-radius: 8px; border-left: 4px solid var(--naranja); }
+
+        /* NOTICIAS */
+        .news-container { display: grid; gap: 20px; }
+        .news-card {
+            background: var(--gris);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+        .news-card:hover { border-color: var(--naranja); background: #161616; }
+        .news-tag { background: var(--naranja); color: var(--negro); font-weight: bold; font-size: 0.7em; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; }
+
+        /* TABLAS Y GRIDS */
+        table { width: 100%; border-collapse: collapse; background: var(--gris); border-radius: 10px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
+        th { background: var(--verde); color: var(--naranja); text-transform: uppercase; letter-spacing: 1px; }
+
+        .plantel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--gris);
+            padding: 25px;
+            border-radius: 15px;
+            border-bottom: 4px solid var(--verde);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { border-bottom-color: var(--naranja); transform: scale(1.03); }
+        .pos-badge { color: var(--naranja); font-weight: bold; font-size: 0.8em; text-transform: uppercase; }
+        .player-name { font-family: 'Impact', sans-serif; font-size: 1.4em; margin-top: 10px; letter-spacing: 1px; }
+
+        @media (max-width: 600px) {
+            nav { width: 100%; height: auto; position: relative; flex-direction: row; border-right: none; border-bottom: 3px solid var(--naranja); padding: 10px 0; }
+            .main-wrapper { width: 100%; margin-left: 0; }
+            .dirigencia-card { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#noticias">Noticias</a>
+    <a href="#plantilla">Plantilla</a>
+    <a href="#partidos">Partidos</a>
+    <a href="#estadisticas">Stats</a>
+</nav>
+
+<div class="main-wrapper">
+    <header>
+        <img src="logo.png" alt="EUROGORI" class="logo-img">
+        <h1>EUROGORI</h1>
+        <p style="text-transform: uppercase; letter-spacing: 4px; font-weight: bold; color: #555;">Córdoba • Argentina</p>
+    </header>
+
+    <div class="container">
+        <section id="inicio">
+            <h2>El Club</h2>
+            <div class="hero-box">
+                <p style="font-size: 1.2em; line-height: 1.6;">Nacidos en las canchas de Córdoba, <strong>EUROGORI</strong> es sinónimo de entrega, mística y el tercer tiempo más largo de la provincia. No jugamos por la gloria, jugamos por los pibes (aunque ganar nos gusta bastante).</p>
+                
+                <div class="dirigencia-card">
+                    <div class="dir-item">
+                        <span style="color: var(--naranja); font-size: 0.8em; font-weight: bold;">PRESIDENTE</span>
+                        <div style="font-size: 1.2em; font-weight: bold; margin-top: 5px;">GORIQUELME</div>
+                    </div>
+                    <div class="dir-item">
+                        <span style="color: var(--naranja); font-size: 0.8em; font-weight: bold;">ESTRATEGIA</span>
+                        <div style="font-size: 1.1em; font-weight: bold; margin-top: 5px;">CONSEJO DEL SKYY</div>
+                    </div>
+                </div>
+                <p style="margin-top: 25px; font-style: italic; color: #888;">"En el Consejo del Skyy no se discute, se decide: Facu Gutierrez, Bauti Albarracín y León Bottaz."</p>
+            </div>
+        </section>
+
+        <section id="noticias">
+            <h2>Último Momento</h2>
+            <div class="news-container">
+                <div class="news-card">
+                    <span class="news-tag">Institucional</span>
+                    <h3 class="news-title">EL CONSEJO DEL SKYY POCO SERIO</h3>
+                    <p class="news-body">Tras los últimos rumores parece que, Gori, Gutierrez, Albarracín y Bottaz salieron de joda ¡¡EL DIA ANTERIOR AL PARTIDO!!, después se quejan de porque no ganan.</p>
+                </div>
+                <div class="news-card">
+                    <span class="news-tag">Entrenamiento</span>
+                    <h3 class="news-title">ALERTA EN MOCONA: ¿HAY MAGIA?</h3>
+                    <p class="news-body">Vieron a Gaspar y a Brunito jugando a que no se caiga sin ver. Los vecinos dicen que la pelota todavía no tocó el piso.</p>
+                </div>
+                <div class="news-card">
+                    <span class="news-tag">Mercado</span>
+                    <h3 class="news-title">SE BUSCAN RIVALES (CON VALOR)</h3>
+                    <p class="news-body">El Euro abre convocatoria para amistosos en La Donosa. Requisito excluyente: aguantar el ritmo y no quejarse del sol.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="plantilla">
+            <h2>Los Protagonistas</h2>
+            <div class="plantel-grid">
+                <div class="card"><span class="pos-badge">Arquero</span><div class="player-name">Fede</div></div>
+                <div class="card"><span class="pos-badge">Arquero</span><div class="player-name">Facundo “Gori” Marin</div></div>
+                <div class="card"><span class="pos-badge">Defensor</span><div class="player-name">Tobias “Vigevani”</div></div>
+                <div class="card"><span class="pos-badge">Def / Del</span><div class="player-name">Bautista "Bautrix" Albarracín</div></div>
+                <div class="card"><span class="pos-badge">Defensor</span><div class="player-name">Alessio “El Carnicero”</div></div>
+                <div class="card"><span class="pos-badge">Defensor</span><div class="player-name">Nahuel Riveros</div></div>
+                <div class="card"><span class="pos-badge">Def / Med</span><div class="player-name">Juan “Choto” Cruz</div></div>
+                <div class="card"><span class="pos-badge">Defensor</span><div class="player-name">Elias “MILITAO” Lopez</div></div>
+                <div class="card"><span class="pos-badge">Defensor</span><div class="player-name">Lucas Farias</div></div>
+                <div class="card"><span class="pos-badge">Def / Med</span><div class="player-name">Facu Gutierrez</div></div>
+                <div class="card"><span class="pos-badge">Medio</span><div class="player-name">Brunito</div></div>
+                <div class="card"><span class="pos-badge">Medio</span><div class="player-name">TITAN</div></div>
+                <div class="card"><span class="pos-badge">Medio</span><div class="player-name">Gaspar “La Pulga”</div></div>
+                <div class="card"><span class="pos-badge">Medio</span><div class="player-name">Cristian “KICHAN” Lopez</div></div>
+                <div class="card"><span class="pos-badge">Delantero</span><div class="player-name">Alejo “TITI”</div></div>
+                <div class="card"><span class="pos-badge">Delantero</span><div class="player-name">La Chancha</div></div>
+                <div class="card"><span class="pos-badge">Delantero</span><div class="player-name">León “TERIAN” Bottaz</div></div>
+            </div>
+        </section>
+
+        <section id="partidos">
+            <h2>Calendario</h2>
+            <table>
+                <thead><tr><th>Fecha</th><th>Rival</th><th>Resultado</th><th>Cancha</th></tr></thead>
+                <tbody><tr><td>Próximamente</td><td>Rival a confirmar</td><td>0 - 0</td><td>Mocona</td></tr></tbody>
+            </table>
+        </section>
+
+        <section id="estadisticas">
+            <h2>Goleadores y Más</h2>
+            <table>
+                <thead><tr><th>Jugador</th><th>Goles</th><th>Asist.</th><th>PJ</th></tr></thead>
+                <tbody>
+                    <tr><td>Gaspar “La Pulga”</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Brunito</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>La CHANCHA</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Fede</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Gori Marin</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Tobias "Vigevani"</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Bautista "Bautrix" Albarracín</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Alessio "El Carnicero"</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Nahuel Riveros</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Juan "Choto" Cruz</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Elias "MILITAO" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Lucas Farias</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Facu Gutierrez</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>TITAN</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Cristian "KICHAN" Lopez</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>Alejo "TITI" Ambrosio</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>León "TERIAN" Bottaz</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+<script>
+    function showSection() {
+        const hash = window.location.hash || '#inicio';
+        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+        const target = document.querySelector(hash);
+        if(target) target.style.display = 'block';
+    }
+    window.addEventListener('hashchange', showSection);
+    window.addEventListener('load', showSection);
+</script>
+</body>
+</html>
